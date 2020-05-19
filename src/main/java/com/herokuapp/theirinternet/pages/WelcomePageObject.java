@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
-public class WelcomePageObject {
+public class WelcomePageObject extends BasePageObject {
 
     private WebDriver driver;
     private Logger log;
@@ -13,21 +13,21 @@ public class WelcomePageObject {
     private By formAuthenticationLocator = By.xpath("//a[@href='/login']");
 
     public WelcomePageObject(WebDriver driver, Logger log) {
-        this.log = log;
-        this.driver = driver;
+        super(driver, log);
     }
 
         /**Open WelcomePage with it's url*/
         public void openPage() {
             log.info ("Opening page: " + pageUrl);
-            driver.get(pageUrl);
+            openUrl(pageUrl);
             log.info("Page opened!");
         }
+
 
     /** Open LoginPAge bu clicking on Form Authentication*/
     public LoginPage clickFormAuthentication() {
         log.info("Clicking Form Authentication link on welcome page");
-        driver.findElement(formAuthenticationLocator).click();
+        click(formAuthenticationLocator);
         return new LoginPage(driver, log);
     }
 

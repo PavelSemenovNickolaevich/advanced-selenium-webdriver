@@ -4,7 +4,7 @@ import org.apache.logging.log4j.core.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage {
+public class LoginPage extends BasePageObject{
 
     private WebDriver driver;
     private Logger log;
@@ -13,15 +13,16 @@ public class LoginPage {
     private By passwordLocator = By.xpath("//input[@id='password']");
 
     public LoginPage(WebDriver driver, Logger log) {
-        this.log = log;
-        this.driver = driver;
+        super(driver, log);
     }
 //LogIn
     public SecureAreaPage login(String username, String password) {
         log.info("Executing Login with username [" + username + "] and password [" + password + "]");
-        driver.findElement(usernameLocator).sendKeys(username);
-        driver.findElement(passwordLocator).sendKeys(password);
-        driver.findElement(buttonLogin).click();
+//        driver.findElement(usernameLocator).sendKeys(username);
+//        driver.findElement(passwordLocator).sendKeys(password);
+        type(username, usernameLocator);
+        type(password, passwordLocator);
+        click(buttonLogin);
         return new SecureAreaPage(driver, log);
     }
 
