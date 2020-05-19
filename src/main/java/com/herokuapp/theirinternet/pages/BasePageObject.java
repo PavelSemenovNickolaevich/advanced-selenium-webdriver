@@ -19,6 +19,11 @@ public class BasePageObject {
         this.driver = driver;
     }
 
+    //Get URL of current page from browser
+    public String getCurrentUrl() {
+        return driver.getCurrentUrl();
+    }
+
     /**Open page with given URL*/
     protected void openUrl(String url) {
         driver.get(url);
