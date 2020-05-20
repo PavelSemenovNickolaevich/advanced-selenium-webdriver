@@ -9,6 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class BasePageObject {
 
     protected WebDriver driver;
@@ -63,6 +65,11 @@ public class BasePageObject {
         timeOutInSeconds = timeOutInSeconds != null ? timeOutInSeconds : 30;
         WebDriverWait wait = new WebDriverWait(driver, timeOutInSeconds);
         wait.until(condition);
+    }
+
+    //Find aa elements using given locator
+    protected List<WebElement> findAll(By locator) {
+        return  driver.findElements(locator);
     }
 
 

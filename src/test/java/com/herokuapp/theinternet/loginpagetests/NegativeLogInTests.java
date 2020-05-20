@@ -18,32 +18,32 @@ import org.testng.annotations.Test;
 
 public class NegativeLogInTests extends TestUtilities {
 
-	WebDriver driver;
+    WebDriver driver;
 
 
-	@Parameters({ "username", "password", "expectedMessage" })
-	@Test(priority = 1)
-	public void negativeTest(String username, String password, String expectedErrorMessage) {
-		log.info("Starting negativeTest");
+    @Parameters({"username", "password", "expectedMessage"})
+    @Test(priority = 1)
+    public void negativeTest(String username, String password, String expectedErrorMessage) {
+        log.info("Starting negativeTest");
 
-		// open main page
-		WelcomePageObject welcomePage = new WelcomePageObject(driver, log);
-		welcomePage.openPage();
+        // open main page
+        WelcomePageObject welcomePage = new WelcomePageObject(driver, log);
+        welcomePage.openPage();
 
-		// Click on Form Authentication link
-		LoginPage loginPage = welcomePage.clickFormAuthentication();
+        // Click on Form Authentication link
+        LoginPage loginPage = welcomePage.clickFormAuthentication();
 
-		//Execute logIN
-		loginPage.negativeLogin(username, password);
+        //Execute logIN
+        loginPage.negativeLogin(username, password);
 
-		//Wait for error message
-		loginPage.waitForErrorMessage();
-		String message = loginPage.getErrorMessage();
+        //Wait for error message
+        loginPage.waitForErrorMessage();
+        String message = loginPage.getErrorMessage();
 
-		// Verification
-		Assert.assertTrue(message.contains(expectedErrorMessage),
-				"actualErrorMessage does not contain expectedErrorMessage\nexpectedErrorMessage: "
-						+ expectedErrorMessage + "\nactualErrorMessage: " + message);
-	}
+        // Verification
+        Assert.assertTrue(message.contains(expectedErrorMessage),
+                "actualErrorMessage does not contain expectedErrorMessage\nexpectedErrorMessage: "
+                        + expectedErrorMessage + "\nactualErrorMessage: " + message);
+    }
 
 }
